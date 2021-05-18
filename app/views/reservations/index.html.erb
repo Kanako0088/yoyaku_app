@@ -1,0 +1,37 @@
+<div class="container-fiuld reservations">
+  <h4 class="pb-4">予約済みルーム一覧</h4>
+  <table>
+    <thead>
+      <tr align="center">
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>合計料金</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @reservations.each do |reservation| %>
+    <% if current_user.id == reservation.user_id %>
+      <tr>
+      	<% @room = Room.find_by(id: reservation.room_id)
+      	s = reservation.start_date.strftime("%Y,%m,%d").to_i
+      	e = reservation.end_date.strftime("%Y,%m,%d").to_i
+      	use_days = (Date.new(e) - Date.new(s)).denominator + 2
+      	total_amount = @room.price * reservation.num_people
+      	%>
+      	<td><%= link_to image_tag("#{@room.icon}"), "/rooms/#{@room.id}" %></td>
+      	<td><%= link_to @room.name, "/rooms/#{@room.id}" %></td>
+      	<td><%= @room.content %></td>
+      	<td>¥ <%= total_amount %></td>
+      	<td><%= reservation.start_date %></td>
+      	<td><%= reservation.end_date %></td>
+      	<td><%= reservation.created_at %></td>
+      </tr>
+    <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

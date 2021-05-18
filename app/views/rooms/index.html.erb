@@ -1,0 +1,47 @@
+<div class="top">
+  <div class="top-main">
+    <div class="container">
+      <div class="row col-lg-6">
+        <div class="form-fream">
+          <div class="form-area">
+            <p class="form-area-title mb-4">PotePote Shareでまだ体験したことのない旅をしよう</p>
+            <%= search_form_for @q, url: :search_rooms do |f| %>
+              <%= f.label :address, "エリア" %>
+              <%= f.search_field :address_cont, placeholder: "東京", class: "form-control mb-4" %>
+              <%= f.submit "探す", class: "form-control btn-primary mb-4" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="panel-area m-5">
+      <h1 class="section-title">おすすめのエリア</h1>
+      <div class="row">
+        <div class="panel-item col-lg-3 col-6">
+          <span>東京</span>
+          <%= link_to image_tag("img_tokyo.jpg", class: "panel-image"),
+          "/rooms/search?q%5Baddress_cont%5D=東京&commit=探す" %>
+          <div class="shadow"></div>
+        </div>
+        <div class="panel-item col-lg-3 col-6"> <span>大阪</span>
+          <%= link_to image_tag("img_osaka.jpg", class: "panel-image"),
+          "/rooms/search?q%5Baddress_cont%5D=大阪&commit=探す" %>
+          <div class="shadow"></div>
+        </div>
+        <div class="panel-item col-lg-3 col-6"> <span>京都</span>
+          <%= link_to image_tag("img_kyoto.jpg", class: "panel-image"),
+          "/rooms/search?q%5Baddress_cont%5D=京都&commit=探す" %>
+          <div class="shadow"></div>
+        </div>
+        <div class="panel-item col-lg-3 col-6"> <span>札幌</span>
+          <%= link_to image_tag("img_sapporo.jpg", class: "panel-image"),
+          "/rooms/search?q%5Baddress_cont%5D=札幌&commit=探す" %>
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

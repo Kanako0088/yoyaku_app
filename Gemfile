@@ -5,6 +5,13 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'pry-rails'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'rails-i18n'
+gem 'carrierwave', '~> 2.0'
+gem 'ransack'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server

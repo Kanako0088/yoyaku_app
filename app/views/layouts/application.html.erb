@@ -5,12 +5,74 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+          <%= link_to image_tag("logo.png"), :root %>
+          <%= search_form_for @q, url: :search_rooms do |f| %>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <%= f.search_field :address_cont, placeholder: "エリア", class: "form-control" %>
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <%= f.search_field :name_or_content_or_address_cont, placeholder: "キーワード", class: "form-control" %>
+              <i class="fas fa-search"></i>
+            </div>
+            <%= f.submit class: "d-none" %>
+          <% end %>
+        </div>
+        <div class="header-right-nav">
+        <% if user_signed_in? %>
+          <div class="nav-item d-sm-inline-block d-none">
+            <%= current_user.name %>
+          </div>
+          <div class="nav-item">
+            <% if @user.image? %>
+              <%= image_tag @user.image.url, :class => "mx-3 p-1 host-icon nav-trigger", :alt => "メニュー" %>
+            <% else %>
+              <%= image_tag "/assets/icon.jpg", :class => "mx-3 p-1 host-icon nav-trigger", :alt => "メニュー" %>
+            <% end %>
+            <ul class="header-nav-menu">
+              <li><a href="/rooms/new">ルーム登録</a></li>
+              <li><%= link_to "予約済みルーム一覧", reservations_path %></li>
+              <li><%= link_to "登録済みルーム一覧", list_rooms_path %></li>
+              <li><%= link_to "設定", :users_show %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="nav-item">
+            <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary my-2 mx-3" %>
+            <%= link_to "登録する", new_user_registration_path, class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </header>
+    <div class="clearfix"></div>
+    <div class="notifications"></div>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <script>
+      $(function() {
+        $('.nav-trigger').click(function() {
+          $('.header-nav-menu').toggle(1500);
+        })
+      });
+    </script>
+    <footer class="footer">
+      <p>&copy; 2021 HotelApp.INC</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,43 @@
+<%= render "shared/error", obj: @reservation %>
+
+<div class="container room-show">
+  <div class="row">
+    <div class="col-md-8">
+        <% if @room.icon? %>
+          <%= image_tag @room.icon.url, :class => "room-show-image" %>
+        <% end %>
+      <div class="room-show-detile">
+        <div class="room-show-detile-icon">
+          <a href="/">
+            <%= image_tag "icon.jpg", class: "host-icon" %>
+          </a>
+        </div>
+        <div class="room-show-profile">
+          <p class="room-show-profile-name"><%= @room.name %></p>
+          <p class="room-show-profile-address"><%= @room.address %></p>
+        </div>
+      </div>
+      <p class="room-show-detile-content"><%= @room.content %></p>
+    </div>
+    <div class="col-md-4">
+      <div class="room-show-nav">
+        <h5 class="price-icon"><%= @room.price %> / 日</h5>
+        <div class="room-show-date-select">
+          <%= form_with model: @reservation do |f| %>
+            <%= f.label :start_date, "開始日"%>
+            <%= f.date_field :start_date,
+                             :class => "form-control mb-4" %>
+            <%= f.label :end_date, "終了日"%>
+            <%= f.date_field :end_date,
+                             :class => "form-control mb-4" %>
+            <%= f.label :num_people, "人数"%>
+            <%= f.number_field :num_people, min: 0,
+                             :class => "form-control mb-4" %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.submit "予約する", :class => "btn btn-primary form-control" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

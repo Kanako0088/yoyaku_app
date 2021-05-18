@@ -1,0 +1,35 @@
+<div class="container-fiuld user">
+  <div class="row">
+    <div class="col-md-12 user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="room">予約した部屋</label>
+            <div class="col-md-9">
+              <%= link_to "#{@room.name}", "/rooms/#{@room.id}"%>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="start_date">開始日</label>
+            <div class="col-md-9"><%= @reservation.start_date %></div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="end_date">終了日</label>
+            <div class="col-md-9"><%= @reservation.end_date %></div>
+          </div>
+        </div>
+        <p>使用日数：<%= @use_days %></p>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="end_date">価格</label>
+            <div class="col-md-9"><%= @total_amount %>円</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,6 @@ class RoomsController < ApplicationController
   
   def new
     @room = Room.new
-    # @reservation = Reservation.new
   end
  
   def create

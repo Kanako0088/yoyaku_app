@@ -60,10 +60,12 @@
       </div>
     </header>
     <div class="clearfix"></div>
-    <div class="notifications"></div>
+    <div class="notifications">
+      <% if flash.notice %>
+      <div class="notice"><%= flash.notice %></div>
+      <% end %>
+    </div>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <script>
       $(function() {
         $('.nav-trigger').click(function() {

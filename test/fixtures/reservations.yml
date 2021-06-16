@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2021-05-04
+  end_date: 2021-05-04
+  num_people: 1
+
+two:
+  start_date: 2021-05-04
+  end_date: 2021-05-04
+  num_people: 1

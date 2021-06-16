@@ -1,0 +1,50 @@
+<div class="container device">
+  <div class="device_frame">
+    <h2 class="mb-3">アカウント編集</h2>
+    <div class="device_inner">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field">
+          <div class="form-group">
+            <%= f.label :user_email ,"メールアドレス" %>
+            <%= f.email_field :email,
+                              :class => "form-control",
+                              :placeholder => "メールアドレスを入力してください" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="form-group">
+            <%= f.label :password ,"変更後パスワード（変更する場合のみ入力）" %>
+            <%= f.password_field :password,
+                                 :class => "form-control"%> 
+          </div>
+        </div>
+        <div class="field">
+          <div class="form-group">
+            <%= f.label :password_confirmation ,"パスワード確認用（変更する場合のみ入力）" %>
+            <%= f.password_field :password_confirmation,
+                                 :class => "form-control"%> 
+          </div>
+        </div>
+        <div class="field">
+          <div class="form-group">
+            <%= f.label :current_assword ,"現在のパスワード" %>
+            <%= f.password_field :current_password,
+                                 :class => "form-control",
+                                 :placeholder => "現在のパスワードを入力" %> 
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "更新", :class => "form-control btn-primary my-4" %>
+        </div>
+      <% end %>
+
+<!--<h3>Cancel my account</h3>-->
+
+<!--<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
+          <%= link_to "戻る", :root,
+                      class: "btn btn-outline-secondary form-control" %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container device">
+  <div class="device_frame">
+    <p class="my-4">新しいアカウントを作成</p>
+    <div class="device_inner">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+  
+      <div class="field form-row">
+        <div class="col-2 required-b pt-2"></div>
+        <%= f.text_field :name,:placeholder => "ユーザー名", 
+                         :class => "form-control col-10 px-2",
+                         autofocus: true, autocomplete: "name" %>
+      </div>
+  
+      <div class="field form-row">
+        <div class="col-2 required-b pt-2"></div>
+        <%= f.email_field :email, :placeholder => "メールアドレス", 
+                                  :class => "form-control col-10 px-2",
+                                  autofocus: true, autocomplete: "email" %>
+      </div>
+    
+      <div class="field form-row">
+        <div class="col-2 required-b pt-2"></div>
+        <% if @minimum_password_length %>
+        <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
+        <% end %><br />
+        <%= f.password_field :password,
+                             :placeholder => "パスワード", 
+                             :class => "form-control col-10 px-2",
+                             autocomplete: "new-password" %>
+      </div>
+    
+      <div class="field form-row">
+        <div class="col-2 required-b pt-2"></div>
+        <%= f.password_field :password_confirmation,
+                             :placeholder => "パスワード確認", 
+                             :class => "form-control col-10 px-2", 
+                             autocomplete: "new-password" %>
+      </div>
+    
+      <div class="actions">
+        <%= f.submit "新しいアカウントを作成", :class => "form-control btn-primary my-4 " %>
+      </div>
+      <%= link_to "すでにアカウントをお持ちの方はログイン", :new_user_session %>
+    <% end %>
+    </div>
+  </div>
+</div>

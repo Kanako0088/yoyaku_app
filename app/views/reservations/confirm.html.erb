@@ -1,0 +1,11 @@
+= form_for :proposal, url: new_proposals_path do |f|
+  = f.hidden_field :name
+  = f.hidden_field :email
+  = f.hidden_field :phone_number
+  = f.submit '入力画面へ戻る'
+
+= form_for :proposal, url: proposals_path do |f|
+  = f.hidden_field :name
+  = f.hidden_field :email
+  = f.hidden_field :phone_number
+  = f.submit '登録する'
